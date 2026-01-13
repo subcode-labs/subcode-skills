@@ -1,8 +1,11 @@
 // biome-ignore lint/suspicious/noExplicitAny: citty's CommandDef types are complex with generics
 type LazyCommand = () => Promise<any>;
 
+const initCommand: LazyCommand = () => import("./init").then((m) => m.default);
+
 export const commands: Record<string, LazyCommand> = {
-	init: () => import("./init").then((m) => m.default),
+	init: initCommand,
+	install: initCommand, // Alias for init
 	add: () => import("./add").then((m) => m.default),
 	remove: () => import("./remove").then((m) => m.default),
 	list: () => import("./list").then((m) => m.default),
