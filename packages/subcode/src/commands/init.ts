@@ -28,10 +28,10 @@ function detectPackageManager(repoRoot: string): "bun" | "pnpm" | "yarn" | "npm"
 async function installAsDevDependency(repoRoot: string): Promise<boolean> {
 	const pm = detectPackageManager(repoRoot);
 	const args = pm === "npm"
-		? ["install", "--save-dev", "subcode-skills"]
-		: ["add", "-D", "subcode-skills"];
+		? ["install", "--save-dev", "@subcode/skills"]
+		: ["add", "-D", "@subcode/skills"];
 
-	consola.info(`Installing subcode-skills as devDependency (${pm})...`);
+	consola.info(`Installing @subcode/skills as devDependency (${pm})...`);
 	const result = await spawnAsync(pm, args, { cwd: repoRoot });
 	return result.exitCode === 0;
 }
@@ -62,7 +62,7 @@ async function getDefaultBranch(): Promise<string> {
 function createConfig(defaultBranch: string) {
 	return {
 		$schema:
-			"https://raw.githubusercontent.com/subcode-labs/subcode-skills/main/schemas/config.schema.json",
+			"https://raw.githubusercontent.com/subcode-labs/@subcode/skills/main/schemas/config.schema.json",
 		version: "1.0.0",
 		initialized: new Date().toISOString(),
 		worktrees: {
@@ -129,12 +129,12 @@ export default defineCommand({
 
 		consola.success("Created .subcode directory");
 
-		// Install subcode-skills as devDependency for `npx subcode` shortcut
+		// Install @subcode/skills as devDependency for `npx subcode` shortcut
 		const installed = await installAsDevDependency(repoRoot);
 		if (installed) {
-			consola.success("Added subcode-skills to devDependencies");
+			consola.success("Added @subcode/skills to devDependencies");
 		} else {
-			consola.warn("Could not add to devDependencies - you can still use npx subcode-skills");
+			consola.warn("Could not add to devDependencies - you can still use npx @subcode/skills");
 		}
 
 		// Ask about installing skills

@@ -1,5 +1,5 @@
 {
-	"name": "subcode-skills",
+	"name": "@subcode/skills",
 	"version": "0.1.3",
 	"description": "Portable Claude skills for enhanced developer experience",
 	"type": "module",
@@ -18,10 +18,14 @@
 		"prepublishOnly": "npm run build",
 		"typecheck": "tsc --noEmit",
 		"lint": "biome check .",
-		"lint:fix": "biome check --write ."
+		"lint:fix": "biome check --write .",
+		"changeset": "changeset",
+		"version": "changeset version",
+		"release": "npm run build && changeset publish"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
+		"@changesets/cli": "^2.29.8",
 		"@types/bun": "^1.1.14",
 		"typescript": "^5.7.2"
 	},
