@@ -1,0 +1,17 @@
+{
+	"name": "subcode-pr-loop",
+	"version": "0.1.0",
+	"private": true,
+	"description": "Autonomous PR improvement agent for Claude",
+	"type": "module",
+	"scripts": {
+		"fetch-status": "bun run src/fetch-status.ts",
+		"check-ci": "bun run src/check-ci.ts",
+		"create-issue": "bun run src/create-issue.ts",
+		"post-comment": "bun run src/post-comment.ts"
+	},
+	"devDependencies": {
+		"@types/bun": "^1.1.14",
+		"typescript": "^5.7.2"
+	}
+}
