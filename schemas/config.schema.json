@@ -37,8 +37,16 @@
 				},
 				"copyEnvFiles": {
 					"type": "boolean",
-					"description": "Copy .env.local files to new worktrees",
-					"default": true
+					"description": "Copy env files to new worktrees (must be explicitly enabled)",
+					"default": false
+				},
+				"envFilePaths": {
+					"type": "array",
+					"description": "Paths to env files to copy (relative to repo root)",
+					"items": {
+						"type": "string"
+					},
+					"examples": [[".env.local", ".env.development.local", "apps/web/.env.local"]]
 				},
 				"packageManager": {
 					"type": "string",

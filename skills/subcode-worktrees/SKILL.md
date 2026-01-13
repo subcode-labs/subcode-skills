@@ -163,8 +163,9 @@ Configuration is stored in `.subcode/config.json`:
   "worktrees": {
     "defaultBaseBranch": "main",
     "autoInstallDeps": true,
+    "packageManager": "auto",
     "copyEnvFiles": true,
-    "packageManager": "auto"
+    "envFilePaths": [".env.local", ".env.development.local", "apps/web/.env.local"]
   }
 }
 ```
@@ -172,8 +173,9 @@ Configuration is stored in `.subcode/config.json`:
 **Options:**
 - `defaultBaseBranch`: Branch to create new worktrees from (default: "main")
 - `autoInstallDeps`: Run package manager install in new worktrees (default: true)
-- `copyEnvFiles`: Copy .env.local files to new worktrees (default: true)
 - `packageManager`: Package manager to use - "auto", "bun", "npm", "yarn", "pnpm" (default: "auto")
+- `copyEnvFiles`: Enable copying env files to new worktrees (default: false, must be explicitly enabled)
+- `envFilePaths`: Array of env file paths to copy, relative to repo root (required if copyEnvFiles is true)
 
 ## Directory Structure
 

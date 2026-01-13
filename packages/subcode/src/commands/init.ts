@@ -68,7 +68,6 @@ function createConfig(defaultBranch: string) {
 		worktrees: {
 			defaultBaseBranch: defaultBranch,
 			autoInstallDeps: true,
-			copyEnvFiles: true,
 			packageManager: "auto",
 		},
 	};

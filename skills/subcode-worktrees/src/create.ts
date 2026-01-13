@@ -29,6 +29,7 @@ interface SubcodeConfig {
 		defaultBaseBranch?: string;
 		autoInstallDeps?: boolean;
 		copyEnvFiles?: boolean;
+		envFilePaths?: string[];
 		packageManager?: string;
 	};
 }
@@ -123,32 +124,18 @@ async function runInit(repoRoot: string): Promise<void> {
 	await proc.exited;
 }
 
-function copyEnvFiles(repoRoot: string, worktreePath: string): string[] {
+function copyEnvFiles(repoRoot: string, worktreePath: string, envFilePaths: string[]): string[] {
 	const copied: string[] = [];
-	const envFiles = [".env.local", ".env.development.local"];
 
-	// Root env files
-	for (const file of envFiles) {
-		const src = join(repoRoot, file);
-		const dest = join(worktreePath, file);
+	for (const filePath of envFilePaths) {
+		const src = join(repoRoot, filePath);
+		const dest = join(worktreePath, filePath);
 		if (existsSync(src)) {
+			// Ensure parent directory exists
+			const destDir = dirname(dest);
+			mkdirSync(destDir, { recursive: true });
 			copyFileSync(src, dest);
-			copied.push(file);
-		}
-	}
-
-	// App-specific env files (common patterns)
-	const appDirs = ["apps/web", "apps/api", "apps/command", "apps/admin"];
-	for (const appDir of appDirs) {
-		for (const file of envFiles) {
-			const src = join(repoRoot, appDir, file);
-			const destDir = join(worktreePath, appDir);
-			const dest = join(destDir, file);
-			if (existsSync(src)) {
-				mkdirSync(destDir, { recursive: true });
-				copyFileSync(src, dest);
-				copied.push(`${appDir}/${file}`);
-			}
+			copied.push(filePath);
 		}
 	}
 
@@ -192,7 +179,8 @@ async function main() {
 	const baseBranch =
 		options.base || config?.worktrees?.defaultBaseBranch || "main";
 	const autoInstallDeps = config?.worktrees?.autoInstallDeps ?? true;
-	const copyEnvFilesEnabled = config?.worktrees?.copyEnvFiles ?? true;
+	const copyEnvFilesEnabled = config?.worktrees?.copyEnvFiles === true;
+	const envFilePaths = config?.worktrees?.envFilePaths ?? [];
 	const configPm = config?.worktrees?.packageManager || "auto";
 
 	// Check if worktree directory already exists
@@ -263,9 +251,9 @@ async function main() {
 		}
 	}
 
-	// Copy env files if enabled
-	if (copyEnvFilesEnabled) {
-		const copied = copyEnvFiles(repoRoot, worktreePath);
+	// Copy env files if explicitly enabled and paths are configured
+	if (copyEnvFilesEnabled && envFilePaths.length > 0) {
+		const copied = copyEnvFiles(repoRoot, worktreePath, envFilePaths);
 		if (copied.length > 0) {
 			console.error(`Copied env files: ${copied.join(", ")}`);
 		}

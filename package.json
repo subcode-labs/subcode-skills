@@ -1,6 +1,6 @@
 {
 	"name": "subcode-skills",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"description": "Portable Claude skills for enhanced developer experience",
 	"type": "module",
 	"bin": {
