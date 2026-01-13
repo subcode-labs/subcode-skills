@@ -23,7 +23,8 @@ export interface SubcodeConfig {
 export interface WorktreesConfig {
 	defaultBaseBranch: string;
 	autoInstallDeps: boolean;
-	copyEnvFiles: boolean;
+	copyEnvFiles?: boolean;
+	envFilePaths?: string[];
 	packageManager: "auto" | "bun" | "npm" | "yarn" | "pnpm";
 }
 
@@ -152,7 +153,6 @@ export function getDefaultConfig(defaultBranch = "main"): SubcodeConfig {
 		worktrees: {
 			defaultBaseBranch: defaultBranch,
 			autoInstallDeps: true,
-			copyEnvFiles: true,
 			packageManager: "auto",
 		},
 	};

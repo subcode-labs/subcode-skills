@@ -96,7 +96,6 @@ your-repo/
   "worktrees": {
     "defaultBaseBranch": "main",
     "autoInstallDeps": true,
-    "copyEnvFiles": true,
     "packageManager": "auto"
   }
 }
