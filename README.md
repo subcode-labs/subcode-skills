@@ -4,7 +4,7 @@
 
 ```bash
 # Install subcode skills in your repository
-curl -fsSL https://raw.githubusercontent.com/subcode-labs/subcode-skills/main/install.sh | bash
+npx subcode-skills install
 ```
 
 ---
@@ -19,12 +19,12 @@ Subcode Skills is a collection of portable tools designed to supercharge your de
 
 ### Interactive Installation
 ```bash
-curl -fsSL https://raw.githubusercontent.com/subcode-labs/subcode-skills/main/install.sh | bash
+npx subcode-skills install
 ```
 
 ### Headless/CI Installation
 ```bash
-curl -fsSL https://raw.githubusercontent.com/subcode-labs/subcode-skills/main/install.sh | bash -s -- --yes
+npx subcode-skills install --yes
 ```
 
 The installer will:
