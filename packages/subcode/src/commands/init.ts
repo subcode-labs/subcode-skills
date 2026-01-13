@@ -12,6 +12,30 @@ async function getRepoRoot(): Promise<string | null> {
 	return execCommandSafe("git", ["rev-parse", "--show-toplevel"]);
 }
 
+function detectPackageManager(repoRoot: string): "bun" | "pnpm" | "yarn" | "npm" {
+	if (existsSync(join(repoRoot, "bun.lockb")) || existsSync(join(repoRoot, "bun.lock"))) {
+		return "bun";
+	}
+	if (existsSync(join(repoRoot, "pnpm-lock.yaml"))) {
+		return "pnpm";
+	}
+	if (existsSync(join(repoRoot, "yarn.lock"))) {
+		return "yarn";
+	}
+	return "npm";
+}
+
+async function installAsDevDependency(repoRoot: string): Promise<boolean> {
+	const pm = detectPackageManager(repoRoot);
+	const args = pm === "npm"
+		? ["install", "--save-dev", "subcode-skills"]
+		: ["add", "-D", "subcode-skills"];
+
+	consola.info(`Installing subcode-skills as devDependency (${pm})...`);
+	const result = await spawnAsync(pm, args, { cwd: repoRoot });
+	return result.exitCode === 0;
+}
+
 async function getDefaultBranch(): Promise<string> {
 	// Try to get from remote HEAD
 	const remoteHead = await execCommandSafe("git", [
@@ -106,6 +130,14 @@ export default defineCommand({
 
 		consola.success("Created .subcode directory");
 
+		// Install subcode-skills as devDependency for `npx subcode` shortcut
+		const installed = await installAsDevDependency(repoRoot);
+		if (installed) {
+			consola.success("Added subcode-skills to devDependencies");
+		} else {
+			consola.warn("Could not add to devDependencies - you can still use npx subcode-skills");
+		}
+
 		// Ask about installing skills
 		const skills = getAvailableSkills();
 
@@ -139,9 +171,9 @@ export default defineCommand({
   .claude/skills/     - Installed Claude skills
 
 Next steps:
-  subcode add <skill> - Install a skill
-  subcode list        - List available skills
-  subcode doctor      - Check setup`,
+  npx subcode add <skill> - Install a skill
+  npx subcode list        - List available skills
+  npx subcode doctor      - Check setup`,
 		});
 	},
 });

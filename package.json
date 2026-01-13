@@ -1,10 +1,11 @@
 {
 	"name": "subcode-skills",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"description": "Portable Claude skills for enhanced developer experience",
 	"type": "module",
 	"bin": {
-		"subcode-skills": "./packages/subcode/dist/index.mjs"
+		"subcode-skills": "./packages/subcode/dist/index.mjs",
+		"subcode": "./packages/subcode/dist/index.mjs"
 	},
 	"files": [
 		"packages/subcode/dist",
