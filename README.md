@@ -4,7 +4,7 @@
 
 ```bash
 # Install subcode skills in your repository
-npx subcode-skills install
+npx @subcode/skills install
 ```
 
 ---
@@ -19,12 +19,12 @@ Subcode Skills is a collection of portable tools designed to supercharge your de
 
 ### Interactive Installation
 ```bash
-npx subcode-skills install
+npx @subcode/skills install
 ```
 
 ### Headless/CI Installation
 ```bash
-npx subcode-skills install --yes
+npx @subcode/skills install --yes
 ```
 
 The installer will:
