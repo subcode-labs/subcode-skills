@@ -1,0 +1,41 @@
+{
+	"name": "subcode",
+	"version": "0.1.0",
+	"description": "CLI for managing subcode skills",
+	"type": "module",
+	"bin": {
+		"subcode": "./dist/index.mjs"
+	},
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.mjs"
+		}
+	},
+	"files": ["dist"],
+	"scripts": {
+		"build": "unbuild",
+		"dev": "bun run src/index.ts",
+		"prepublishOnly": "npm run build"
+	},
+	"dependencies": {
+		"citty": "^0.1.6",
+		"consola": "^3.2.3",
+		"pathe": "^1.1.2"
+	},
+	"devDependencies": {
+		"@types/node": "^22.0.0",
+		"typescript": "^5.7.2",
+		"unbuild": "^3.0.0"
+	},
+	"engines": {
+		"node": ">=18.0.0"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/subcode-labs/subcode-skills.git",
+		"directory": "packages/subcode"
+	},
+	"keywords": ["cli", "claude", "skills", "developer-experience"],
+	"license": "MIT"
+}

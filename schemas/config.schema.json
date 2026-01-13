@@ -1,55 +1,55 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://raw.githubusercontent.com/subcode-labs/subcode-skills/main/schemas/config.schema.json",
-  "title": "Subcode Configuration",
-  "description": "Configuration file for subcode skills",
-  "type": "object",
-  "properties": {
-    "$schema": {
-      "type": "string",
-      "description": "JSON Schema reference"
-    },
-    "version": {
-      "type": "string",
-      "description": "Configuration schema version",
-      "pattern": "^\\d+\\.\\d+\\.\\d+$",
-      "examples": ["1.0.0"]
-    },
-    "initialized": {
-      "type": "string",
-      "description": "ISO 8601 timestamp when subcode was initialized",
-      "format": "date-time"
-    },
-    "worktrees": {
-      "type": "object",
-      "description": "Configuration for the subcode-worktrees skill",
-      "properties": {
-        "defaultBaseBranch": {
-          "type": "string",
-          "description": "Default branch to create new worktrees from",
-          "default": "main",
-          "examples": ["main", "master", "develop"]
-        },
-        "autoInstallDeps": {
-          "type": "boolean",
-          "description": "Automatically run package manager install in new worktrees",
-          "default": true
-        },
-        "copyEnvFiles": {
-          "type": "boolean",
-          "description": "Copy .env.local files to new worktrees",
-          "default": true
-        },
-        "packageManager": {
-          "type": "string",
-          "description": "Package manager to use for installing dependencies",
-          "enum": ["auto", "bun", "npm", "yarn", "pnpm"],
-          "default": "auto"
-        }
-      },
-      "additionalProperties": false
-    }
-  },
-  "required": ["version"],
-  "additionalProperties": true
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "https://raw.githubusercontent.com/subcode-labs/subcode-skills/main/schemas/config.schema.json",
+	"title": "Subcode Configuration",
+	"description": "Configuration file for subcode skills",
+	"type": "object",
+	"properties": {
+		"$schema": {
+			"type": "string",
+			"description": "JSON Schema reference"
+		},
+		"version": {
+			"type": "string",
+			"description": "Configuration schema version",
+			"pattern": "^\\d+\\.\\d+\\.\\d+$",
+			"examples": ["1.0.0"]
+		},
+		"initialized": {
+			"type": "string",
+			"description": "ISO 8601 timestamp when subcode was initialized",
+			"format": "date-time"
+		},
+		"worktrees": {
+			"type": "object",
+			"description": "Configuration for the subcode-worktrees skill",
+			"properties": {
+				"defaultBaseBranch": {
+					"type": "string",
+					"description": "Default branch to create new worktrees from",
+					"default": "main",
+					"examples": ["main", "master", "develop"]
+				},
+				"autoInstallDeps": {
+					"type": "boolean",
+					"description": "Automatically run package manager install in new worktrees",
+					"default": true
+				},
+				"copyEnvFiles": {
+					"type": "boolean",
+					"description": "Copy .env.local files to new worktrees",
+					"default": true
+				},
+				"packageManager": {
+					"type": "string",
+					"description": "Package manager to use for installing dependencies",
+					"enum": ["auto", "bun", "npm", "yarn", "pnpm"],
+					"default": "auto"
+				}
+			},
+			"additionalProperties": false
+		}
+	},
+	"required": ["version"],
+	"additionalProperties": true
 }
