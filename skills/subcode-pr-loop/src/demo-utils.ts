@@ -2,11 +2,11 @@
  * Demo utility file with intentional issues for testing pr-loop skill
  */
 
-// Intentional: unused variable (lint issue)
-const unusedVar = "this should trigger a lint warning";
+interface DataWithValue {
+	value: unknown;
+}
 
-// Intentional: any type (could be flagged in review)
-export function processData(data: any) {
+export function processData(data: DataWithValue): unknown {
 	return data.value;
 }
 
