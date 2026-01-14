@@ -46,13 +46,51 @@
 					"items": {
 						"type": "string"
 					},
-					"examples": [[".env.local", ".env.development.local", "apps/web/.env.local"]]
+					"examples": [
+						[".env.local", ".env.development.local", "apps/web/.env.local"]
+					]
 				},
 				"packageManager": {
 					"type": "string",
 					"description": "Package manager to use for installing dependencies",
 					"enum": ["auto", "bun", "npm", "yarn", "pnpm"],
 					"default": "auto"
+				}
+			},
+			"additionalProperties": false
+		},
+		"prLoop": {
+			"type": "object",
+			"description": "Configuration for the subcode-pr-loop skill",
+			"properties": {
+				"issueTracker": {
+					"type": "string",
+					"description": "Where to create follow-up issues",
+					"enum": ["github", "linear"],
+					"default": "github"
+				},
+				"linearTeamId": {
+					"type": "string",
+					"description": "Linear team ID for issue creation (required if issueTracker is 'linear')"
+				},
+				"linearProjectId": {
+					"type": "string",
+					"description": "Optional Linear project ID to assign issues to"
+				},
+				"maxIterations": {
+					"type": "number",
+					"description": "Maximum improvement iterations before stopping",
+					"default": 5
+				},
+				"ciWaitSeconds": {
+					"type": "number",
+					"description": "Initial wait time for CI after push (seconds)",
+					"default": 300
+				},
+				"ciRetrySeconds": {
+					"type": "number",
+					"description": "Additional wait if CI not complete (seconds)",
+					"default": 120
 				}
 			},
 			"additionalProperties": false

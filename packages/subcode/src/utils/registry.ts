@@ -27,6 +27,26 @@ export const SKILL_REGISTRY: Record<string, SkillDefinition> = {
 			"references/worktree-patterns.md",
 		],
 	},
+	"gh-address-comments": {
+		name: "gh-address-comments",
+		description: "Address GitHub PR review comments",
+		version: "0.1.0",
+		files: ["SKILL.md", "package.json", "src/fetch.ts", "src/types.ts"],
+	},
+	"subcode-pr-loop": {
+		name: "subcode-pr-loop",
+		description: "Autonomous PR improvement agent",
+		version: "0.1.0",
+		files: [
+			"SKILL.md",
+			"package.json",
+			"src/types.ts",
+			"src/fetch-status.ts",
+			"src/check-ci.ts",
+			"src/post-comment.ts",
+			"src/create-issue.ts",
+		],
+	},
 };
 
 export const REPO_BASE_URL =

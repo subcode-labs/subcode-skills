@@ -1,0 +1,14 @@
+{
+	"name": "gh-address-comments",
+	"version": "0.1.0",
+	"private": true,
+	"description": "Address GitHub PR review comments skill for Claude",
+	"type": "module",
+	"scripts": {
+		"fetch": "bun run src/fetch.ts"
+	},
+	"devDependencies": {
+		"@types/bun": "^1.1.14",
+		"typescript": "^5.7.2"
+	}
+}
