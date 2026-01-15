@@ -5,11 +5,11 @@
 	"description": "Git worktree management skill for Claude",
 	"type": "module",
 	"scripts": {
-		"init": "bun run src/init.ts",
-		"create": "bun run src/create.ts",
-		"remove": "bun run src/remove.ts",
-		"list": "bun run src/list.ts",
-		"prune": "bun run src/prune.ts"
+		"init": "bun run scripts/init.ts",
+		"create": "bun run scripts/create.ts",
+		"remove": "bun run scripts/remove.ts",
+		"list": "bun run scripts/list.ts",
+		"prune": "bun run scripts/prune.ts"
 	},
 	"dependencies": {},
 	"devDependencies": {

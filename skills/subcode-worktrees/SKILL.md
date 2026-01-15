@@ -1,6 +1,12 @@
 ---
 name: subcode-worktrees
-description: Git worktree management with best practices. Use this skill when the user wants to create, list, remove, or manage git worktrees. This skill stores worktrees in .subcode/worktrees/ for clean organization and provides structured JSON output for reliable parsing.
+description: Git worktree management with best practices. Use this skill when the user wants to create, list, remove, or manage git worktrees for parallel development, branch checkout, or PR review. Enables working on multiple branches simultaneously. This skill stores worktrees in .subcode/worktrees/ for clean organization and provides structured JSON output for reliable parsing.
+license: MIT
+compatibility: Requires bun runtime (1.0+) and git (2.20+)
+metadata:
+  author: subcode-labs
+  version: "0.1.0"
+allowed-tools: Bash(bun:*) Bash(git:*) Read
 ---
 
 # Subcode Worktrees
@@ -23,7 +29,7 @@ All commands are TypeScript scripts executed with Bun. They output structured JS
 ### Initialize Subcode Directory
 
 ```bash
-bun run .claude/skills/subcode-worktrees/src/init.ts
+bun run .claude/skills/subcode-worktrees/scripts/init.ts
 ```
 
 Creates the `.subcode/` directory structure if it doesn't exist. This is called automatically by other commands.
@@ -41,7 +47,7 @@ Creates the `.subcode/` directory structure if it doesn't exist. This is called 
 ### Create a Worktree
 
 ```bash
-bun run .claude/skills/subcode-worktrees/src/create.ts --name <name> [--branch <branch>] [--base <base-branch>]
+bun run .claude/skills/subcode-worktrees/scripts/create.ts --name <name> [--branch <branch>] [--base <base-branch>]
 ```
 
 **Arguments:**
@@ -51,7 +57,7 @@ bun run .claude/skills/subcode-worktrees/src/create.ts --name <name> [--branch <
 
 **Example:**
 ```bash
-bun run .claude/skills/subcode-worktrees/src/create.ts --name feature-auth --branch feature/authentication
+bun run .claude/skills/subcode-worktrees/scripts/create.ts --name feature-auth --branch feature/authentication
 ```
 
 **Output:**
@@ -76,7 +82,7 @@ bun run .claude/skills/subcode-worktrees/src/create.ts --name feature-auth --bra
 ### List Worktrees
 
 ```bash
-bun run .claude/skills/subcode-worktrees/src/list.ts [--json]
+bun run .claude/skills/subcode-worktrees/scripts/list.ts [--json]
 ```
 
 **Arguments:**
@@ -109,7 +115,7 @@ feature-auth    feature/auth        .subcode/worktrees/feature-auth dirty
 ### Remove a Worktree
 
 ```bash
-bun run .claude/skills/subcode-worktrees/src/remove.ts --name <name> [--delete-branch] [--force]
+bun run .claude/skills/subcode-worktrees/scripts/remove.ts --name <name> [--delete-branch] [--force]
 ```
 
 **Arguments:**
@@ -119,7 +125,7 @@ bun run .claude/skills/subcode-worktrees/src/remove.ts --name <name> [--delete-b
 
 **Example:**
 ```bash
-bun run .claude/skills/subcode-worktrees/src/remove.ts --name feature-auth --delete-branch
+bun run .claude/skills/subcode-worktrees/scripts/remove.ts --name feature-auth --delete-branch
 ```
 
 **Output:**
@@ -139,7 +145,7 @@ bun run .claude/skills/subcode-worktrees/src/remove.ts --name feature-auth --del
 ### Prune Stale Worktrees
 
 ```bash
-bun run .claude/skills/subcode-worktrees/src/prune.ts
+bun run .claude/skills/subcode-worktrees/scripts/prune.ts
 ```
 
 Cleans up stale worktree references (worktrees that were manually deleted without using `git worktree remove`).
@@ -196,16 +202,16 @@ your-repo/
 
 ### Creating a Feature Branch Worktree
 
-1. Create worktree: `bun run .claude/skills/subcode-worktrees/src/create.ts --name feature-auth`
+1. Create worktree: `bun run .claude/skills/subcode-worktrees/scripts/create.ts --name feature-auth`
 2. Navigate to it: `cd .subcode/worktrees/feature-auth`
 3. Work on your feature
-4. When done, remove: `bun run .claude/skills/subcode-worktrees/src/remove.ts --name feature-auth`
+4. When done, remove: `bun run .claude/skills/subcode-worktrees/scripts/remove.ts --name feature-auth`
 
 ### Reviewing a PR
 
-1. Create worktree: `bun run .claude/skills/subcode-worktrees/src/create.ts --name pr-review --branch origin/feature-branch`
+1. Create worktree: `bun run .claude/skills/subcode-worktrees/scripts/create.ts --name pr-review --branch origin/feature-branch`
 2. Review the code
-3. Remove when done: `bun run .claude/skills/subcode-worktrees/src/remove.ts --name pr-review`
+3. Remove when done: `bun run .claude/skills/subcode-worktrees/scripts/remove.ts --name pr-review`
 
 ## Error Handling
 
@@ -229,5 +235,7 @@ Common error codes:
 
 ## Reference Documentation
 
-For more details on git worktree patterns and best practices, see:
-- [worktree-patterns.md](references/worktree-patterns.md)
+For more details, see:
+- [patterns.md](references/patterns.md) - Organization patterns and why to use worktrees
+- [troubleshooting.md](references/troubleshooting.md) - Common issues and solutions
+- [git-commands.md](references/git-commands.md) - Native git worktree command reference
