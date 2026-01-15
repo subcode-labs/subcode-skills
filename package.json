@@ -23,6 +23,11 @@
 		"version": "changeset version",
 		"release": "npm run build && changeset publish"
 	},
+	"dependencies": {
+		"citty": "^0.1.6",
+		"consola": "^3.2.3",
+		"pathe": "^1.1.2"
+	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
 		"@changesets/cli": "^2.29.8",

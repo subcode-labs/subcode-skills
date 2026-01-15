@@ -4,6 +4,11 @@
   "workspaces": {
     "": {
       "name": "subcode-skills",
+      "dependencies": {
+        "citty": "^0.1.6",
+        "consola": "^3.2.3",
+        "pathe": "^1.1.2",
+      },
       "devDependencies": {
         "@biomejs/biome": "^1.9.4",
         "@changesets/cli": "^2.29.8",
@@ -26,6 +31,22 @@
         "@types/node": "^22.0.0",
         "typescript": "^5.7.2",
         "unbuild": "^3.0.0",
+      },
+    },
+    "skills/gh-address-comments": {
+      "name": "gh-address-comments",
+      "version": "0.1.0",
+      "devDependencies": {
+        "@types/bun": "^1.1.14",
+        "typescript": "^5.7.2",
+      },
+    },
+    "skills/subcode-pr-loop": {
+      "name": "subcode-pr-loop",
+      "version": "0.1.0",
+      "devDependencies": {
+        "@types/bun": "^1.1.14",
+        "typescript": "^5.7.2",
       },
     },
     "skills/subcode-worktrees": {
@@ -350,6 +371,8 @@
 
     "function-bind": ["function-bind@1.1.2", "", {}, "sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA=="],
 
+    "gh-address-comments": ["gh-address-comments@workspace:skills/gh-address-comments"],
+
     "glob-parent": ["glob-parent@5.1.2", "", { "dependencies": { "is-glob": "^4.0.1" } }, "sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow=="],
 
     "globby": ["globby@11.1.0", "", { "dependencies": { "array-union": "^2.1.0", "dir-glob": "^3.0.1", "fast-glob": "^3.2.9", "ignore": "^5.2.0", "merge2": "^1.4.1", "slash": "^3.0.0" } }, "sha512-jhIXaOzy1sb8IyocaruWSn1TjmnBVs8Ayhcy83rmxNJ8q2uWKCAj3CnJY+KpGSXCueAPc0i05kVvVKtP1t9S3g=="],
@@ -569,6 +592,8 @@
     "stylehacks": ["stylehacks@7.0.7", "", { "dependencies": { "browserslist": "^4.27.0", "postcss-selector-parser": "^7.1.0" }, "peerDependencies": { "postcss": "^8.4.32" } }, "sha512-bJkD0JkEtbRrMFtwgpJyBbFIwfDDONQ1Ov3sDLZQP8HuJ73kBOyx66H4bOcAbVWmnfLdvQ0AJwXxOMkpujcO6g=="],
 
     "subcode": ["subcode@workspace:packages/subcode"],
+
+    "subcode-pr-loop": ["subcode-pr-loop@workspace:skills/subcode-pr-loop"],
 
     "subcode-worktrees": ["subcode-worktrees@workspace:skills/subcode-worktrees"],
 
